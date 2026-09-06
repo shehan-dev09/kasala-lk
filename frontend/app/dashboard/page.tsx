@@ -1,6 +1,9 @@
 "use client";
 
 import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer } from "recharts";
+import dynamic from "next/dynamic";
+
+const ZoneMap = dynamic(() => import("../components/ZoneMap"), { ssr: false });
 
 
 import { useState, useEffect } from "react";
@@ -17,6 +20,7 @@ export default function Dashboard() {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
   const [forecast, setForecast] = useState<any[]>([]);
+  const [zoneData, setZoneData] = useState<Record<string, { demand: string; tons: number }>>({});
 
 
   useEffect(() => {
@@ -38,8 +42,12 @@ export default function Dashboard() {
         }),
       });
       if (!res.ok) throw new Error("Prediction failed");
-      const data = await res.json();
+            const data = await res.json();
       setResult(data);
+      setZoneData((prev) => ({
+        ...prev,
+        [data.zone]: { demand: data.demand_level, tons: data.predicted_waste_tons },
+      }));
     } catch (err) {
       setError("Could not reach the prediction server. Is the backend running?");
     } finally {
@@ -135,7 +143,7 @@ export default function Dashboard() {
           </div>
         )}
 
-        {forecast.length > 0 && (
+                {forecast.length > 0 && (
           <div className="mt-8">
             <h2 className="text-lg font-semibold mb-3">7-Day Forecast — {zone}</h2>
             <ResponsiveContainer width="100%" height={250}>
@@ -154,6 +162,11 @@ export default function Dashboard() {
             </ResponsiveContainer>
           </div>
         )}
+
+        <div className="mt-8">
+          <h2 className="text-lg font-semibold mb-3">Zone Map</h2>
+          <ZoneMap zoneData={zoneData} />
+        </div>
       </div>
     </main>
   );
