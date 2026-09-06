@@ -1,69 +1,73 @@
-import Image from "next/image";
-
 export default function Home() {
   return (
-    <div className="flex flex-col flex-1 items-center justify-center bg-zinc-50 font-sans dark:bg-black">
-      <main className="flex flex-1 w-full max-w-3xl flex-col items-center justify-between py-32 px-16 bg-white dark:bg-black sm:items-start">
-        <Image
-          className="dark:invert h-5 w-[100px]"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={100}
-          height={20}
-          priority
-        />
-        <div className="flex flex-col items-center gap-6 text-center sm:items-start sm:text-left">
-          <h1 className="max-w-xs text-3xl font-semibold leading-10 tracking-tight text-black dark:text-zinc-50">
-            To get started, edit the{" "}
-            <code className="rounded bg-black/[.06] px-1.5 py-0.5 font-mono text-[0.9em] dark:bg-white/[.08]">
-              page.tsx
-            </code>{" "}
-            file.
-          </h1>
-          <p className="max-w-md text-lg leading-8 text-zinc-600 dark:text-zinc-400">
-            Looking for a starting point or more instructions? Head over to{" "}
-            <a
-              href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Templates
-            </a>{" "}
-            or the{" "}
-            <a
-              href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Learning
-            </a>{" "}
-            center.
+    <main className="min-h-screen bg-gray-50 text-gray-900">
+      {/* Header */}
+      <header className="flex justify-between items-center px-8 py-6 border-b bg-white">
+        <div className="flex items-center gap-2">
+          <span className="text-2xl">♻️</span>
+          <h1 className="text-xl font-bold text-green-700">Kasala.lk</h1>
+        </div>
+        <nav className="flex gap-6 text-sm font-medium">
+          <a href="#" className="hover:text-green-700">Dashboard</a>
+          <a href="#" className="hover:text-green-700">About</a>
+          <a href="#" className="hover:text-green-700">Report Issue</a>
+        </nav>
+      </header>
+
+      {/* Hero section */}
+      <section className="text-center py-24 px-6 bg-gradient-to-b from-green-50 to-gray-50">
+        <h2 className="text-4xl md:text-5xl font-bold mb-4">
+          Smarter Waste Collection for <span className="text-green-700">Sri Lanka</span>
+        </h2>
+        <p className="text-lg text-gray-600 max-w-2xl mx-auto mb-8">
+          Kasala.lk (කසල.lk) predicts garbage collection demand across Sri Lankan cities,
+          helping councils plan smarter and reduce overflow.
+        </p>
+        <div className="flex justify-center gap-4">
+          <button className="bg-green-700 text-white px-6 py-3 rounded-lg font-semibold hover:bg-green-800">
+            View Dashboard
+          </button>
+          <button className="border border-green-700 text-green-700 px-6 py-3 rounded-lg font-semibold hover:bg-green-50">
+            Learn More
+          </button>
+        </div>
+      </section>
+
+      {/* Feature cards */}
+      <section className="grid md:grid-cols-3 gap-6 px-8 py-16 max-w-6xl mx-auto">
+        <div className="bg-white p-6 rounded-xl shadow-sm border">
+          <h3 className="font-semibold text-lg mb-2">📍 Zone Predictions</h3>
+          <p className="text-gray-600 text-sm">
+            See predicted waste demand for Colombo, Kandy, and Galle — updated daily.
           </p>
         </div>
-        <div className="flex flex-col gap-4 text-base font-medium sm:flex-row">
-          <a
-            className="flex h-12 w-full items-center justify-center gap-2 rounded-full bg-foreground px-5 text-background transition-colors hover:bg-[#383838] dark:hover:bg-[#ccc] md:w-[158px]"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert h-[14px] w-4"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={16}
-              height={14}
-            />
-            Deploy Now
-          </a>
-          <a
-            className="flex h-12 w-full items-center justify-center rounded-full border border-solid border-black/[.08] px-5 transition-colors hover:border-transparent hover:bg-black/[.04] dark:border-white/[.145] dark:hover:bg-[#1a1a1a] md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Documentation
-          </a>
+        <div className="bg-white p-6 rounded-xl shadow-sm border">
+          <h3 className="font-semibold text-lg mb-2">📊 Forecast Charts</h3>
+          <p className="text-gray-600 text-sm">
+            Track waste trends over time to plan truck allocation ahead of demand spikes.
+          </p>
         </div>
-      </main>
-    </div>
+        <div className="bg-white p-6 rounded-xl shadow-sm border">
+          <h3 className="font-semibold text-lg mb-2">🗺️ Smart Routes</h3>
+          <p className="text-gray-600 text-sm">
+            Get suggested collection routes based on predicted demand per zone.
+          </p>
+        </div>
+      </section>
+
+      {/* Transparency note */}
+      <section className="bg-white border-t px-8 py-10 text-center text-sm text-gray-500">
+        <p className="max-w-2xl mx-auto">
+          Kasala.lk's predictions currently use a model trained on published waste-generation
+          rates and estimated patterns. Accuracy improves as real collection data is logged
+          by participating councils.
+        </p>
+      </section>
+
+      {/* Footer */}
+      <footer className="text-center py-6 text-gray-400 text-sm border-t">
+        © 2026 Kasala.lk — Built for a cleaner Sri Lanka 🇱🇰
+      </footer>
+    </main>
   );
 }
