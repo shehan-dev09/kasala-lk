@@ -93,3 +93,52 @@ def predict(req: PredictionRequest):
         "predicted_waste_tons": round(predicted_volume, 2),
         "demand_level": demand,
     }
+
+from datetime import timedelta
+
+@app.get("/forecast/{zone}")
+def forecast(zone: str, days: int = 7):
+    if zone not in ZONES:
+        raise HTTPException(status_code=400, detail=f"Unknown zone: {zone}")
+
+    population = ZONES[zone]["population"]
+    results = []
+    prev_volume = population * 0.7 / 1000  # starting estimate
+
+    poya_days_2026 = [
+        "2026-01-03", "2026-02-01", "2026-03-02", "2026-04-01",
+        "2026-05-01", "2026-05-30", "2026-06-29", "2026-07-29",
+        "2026-08-27", "2026-09-26", "2026-10-25", "2026-11-24", "2026-12-23"
+    ]
+
+    zone_encoded = zone_encoder.transform([zone])[0]
+
+    for i in range(days):
+        current_date = date.today() + timedelta(days=i)
+        day_of_week = current_date.weekday()
+        is_weekend = 1 if day_of_week >= 5 else 0
+        is_poya = 1 if current_date.isoformat() in poya_days_2026 else 0
+        month = current_date.month
+        season = "monsoon" if month in [5, 6, 9, 10, 11] else "dry"
+        season_encoded = season_encoder.transform([season])[0]
+        rainfall = 10.0  # placeholder — later this can pull real forecast data
+
+        input_df = pd.DataFrame([{
+            "zone_encoded": zone_encoded,
+            "population": population,
+            "day_of_week": day_of_week,
+            "is_weekend": is_weekend,
+            "is_poya": is_poya,
+            "rainfall_mm": rainfall,
+            "season_encoded": season_encoded,
+            "prev_volume_tons": prev_volume,
+        }])
+
+        predicted = model.predict(input_df)[0]
+        results.append({
+            "date": current_date.isoformat(),
+            "predicted_waste_tons": round(predicted, 2),
+        })
+        prev_volume = predicted
+
+    return {"zone": zone, "forecast": results}

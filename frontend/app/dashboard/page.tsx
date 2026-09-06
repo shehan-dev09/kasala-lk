@@ -1,9 +1,13 @@
 "use client";
 
-import { useState } from "react";
+import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer } from "recharts";
+
+
+import { useState, useEffect } from "react";
 
 const ZONES = ["Colombo", "Kandy", "Galle"];
 const API_URL = "http://127.0.0.1:8000";
+
 
 export default function Dashboard() {
   const [zone, setZone] = useState("Colombo");
@@ -12,6 +16,12 @@ export default function Dashboard() {
   const [result, setResult] = useState<any>(null);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
+  const [forecast, setForecast] = useState<any[]>([]);
+
+
+  useEffect(() => {
+  loadForecast(zone);
+}, []);
 
   async function handlePredict() {
     setLoading(true);
@@ -37,6 +47,16 @@ export default function Dashboard() {
     }
   }
 
+  async function loadForecast(selectedZone: string) {
+  try {
+    const res = await fetch(`${API_URL}/forecast/${selectedZone}`);
+    const data = await res.json();
+    setForecast(data.forecast);
+  } catch (err) {
+    console.error("Forecast fetch failed", err);
+  }
+}
+
   const demandColor: Record<string, string> = {
     HIGH: "bg-red-100 text-red-700 border-red-300",
     MEDIUM: "bg-yellow-100 text-yellow-700 border-yellow-300",
@@ -54,9 +74,12 @@ export default function Dashboard() {
           <div>
             <label className="block text-sm font-medium mb-1">Zone</label>
             <select
-              value={zone}
-              onChange={(e) => setZone(e.target.value)}
-              className="w-full border rounded-lg p-2"
+                value={zone}
+                onChange={(e) => {
+                    setZone(e.target.value);
+                    loadForecast(e.target.value);
+                }}
+                className="w-full border rounded-lg p-2"
             >
               {ZONES.map((z) => (
                 <option key={z} value={z}>{z}</option>
@@ -109,6 +132,26 @@ export default function Dashboard() {
             <p className="text-lg">
               Estimated Waste: <strong>{result.predicted_waste_tons} tons</strong>
             </p>
+          </div>
+        )}
+
+        {forecast.length > 0 && (
+          <div className="mt-8">
+            <h2 className="text-lg font-semibold mb-3">7-Day Forecast — {zone}</h2>
+            <ResponsiveContainer width="100%" height={250}>
+              <LineChart data={forecast}>
+                <CartesianGrid strokeDasharray="3 3" />
+                <XAxis dataKey="date" tick={{ fontSize: 12 }} />
+                <YAxis />
+                <Tooltip />
+                <Line
+                  type="monotone"
+                  dataKey="predicted_waste_tons"
+                  stroke="#15803d"
+                  strokeWidth={2}
+                />
+              </LineChart>
+            </ResponsiveContainer>
           </div>
         )}
       </div>
