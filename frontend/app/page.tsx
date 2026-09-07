@@ -8,9 +8,9 @@ export default function Home() {
           <h1 className="text-xl font-bold text-green-700">Kasala.lk</h1>
         </div>
         <nav className="flex gap-6 text-sm font-medium">
-          <a href="#" className="hover:text-green-700">Dashboard</a>
+          <a href="/dashboard" className="hover:text-green-700">Dashboard</a>
           <a href="#" className="hover:text-green-700">About</a>
-          <a href="#" className="hover:text-green-700">Report Issue</a>
+          <a href="/report" className="hover:text-green-700">Report Issue</a>
         </nav>
       </header>
 
