@@ -1,4 +1,6 @@
 "use client";
+import Header from "./components/Header";
+import Footer from "./components/Footer";
 import {
   MapPin, BarChart3, Route, Menu, X, ArrowRight,
   Database, Brain, Truck, RefreshCw,
@@ -6,34 +8,14 @@ import {
 import { motion } from "framer-motion";
 import { useState } from "react";
 
+
 export default function Home() {
   const [menuOpen, setMenuOpen] = useState(false);
 
   return (
     <main className="min-h-screen bg-gray-50 text-gray-900">
       {/* Header */}
-      <header className="flex justify-between items-center px-6 md:px-10 py-4 bg-white/95 backdrop-blur-sm shadow-sm sticky top-0 z-50">
-        <div className="flex items-center gap-2 md:gap-3">
-          <img src="/logo.png" alt="Kasala.lk logo" className="w-9 h-9 rounded-lg" />
-          <span className="text-xl font-bold text-brand-700" style={{ fontFamily: "var(--font-heading)" }}>
-            Kasala.Lk
-          </span>
-        </div>
-
-        <nav className="hidden md:flex gap-8 text-sm font-medium text-gray-700">
-          <a href="/dashboard" className="hover:text-brand-600 transition">Dashboard</a>
-          <a href="#about" className="hover:text-brand-600 transition">About</a>
-          <a href="/report" className="hover:text-brand-600 transition">Report Issue</a>
-        </nav>
-
-        <a href="/dashboard" className="hidden md:inline-block bg-brand-700 text-white px-5 py-2.5 rounded-lg text-sm font-semibold hover:bg-brand-800 transition">
-          Get Started
-        </a>
-
-        <button className="md:hidden" onClick={() => setMenuOpen(!menuOpen)}>
-          {menuOpen ? <X size={24} /> : <Menu size={24} />}
-        </button>
-      </header>
+      <Header />
 
       {menuOpen && (
         <div className="md:hidden bg-white border-b px-6 py-4 flex flex-col gap-4 text-sm font-medium">
@@ -44,7 +26,7 @@ export default function Home() {
       )}
 
       {/* Hero section */}
-      <section className="relative py-20 md:py-32 px-6 md:px-16 text-white overflow-hidden">
+      <section className="relative py-14 md:py-20 px-6 md:px-16 text-white overflow-hidden">
         <video
           autoPlay
           loop
@@ -62,7 +44,7 @@ export default function Home() {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6 }}
-            className="text-4xl md:text-5xl font-extrabold mb-4"
+            className="text-3xl md:text-4xl font-extrabold mb-4"
             style={{ fontFamily: "var(--font-heading)" }}
           >
             Smarter Waste Collection for Sri Lanka
@@ -71,7 +53,7 @@ export default function Home() {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.1 }}
-            className="text-lg mb-8 opacity-90"
+            className="text-base md:text-lg mb-6 opacity-90"
           >
             Kasala.lk (කසල.lk) predicts garbage collection demand across Sri Lankan cities,
             helping councils plan smarter and reduce overflow.
@@ -95,7 +77,7 @@ export default function Home() {
 
       {/* Stats bar */}
       <section className="bg-brand-700">
-        <div className="max-w-4xl mx-auto grid grid-cols-1 sm:grid-cols-3 divide-y sm:divide-y-0 sm:divide-x divide-white/20 py-4 sm:py-8">
+        <div className="max-w-4xl mx-auto grid grid-cols-1 sm:grid-cols-3 divide-y sm:divide-y-0 sm:divide-x divide-white/20 py-3 sm:py-6">
           <div className="text-center py-4 sm:py-0">
             <p className="text-3xl font-bold text-white">3</p>
             <p className="text-sm text-brand-100">Cities Covered</p>
@@ -246,37 +228,7 @@ export default function Home() {
       </section>
 
       {/* Footer */}
-      <footer className="bg-gray-900 text-gray-400 px-6 md:px-8 py-14">
-        <div className="max-w-6xl mx-auto grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-10">
-          <div>
-            <div className="flex items-center gap-2 mb-3">
-              <img src="/logo.png" alt="Kasala.lk" className="w-8 h-8 rounded-lg" />
-              <span className="text-white font-bold">Kasala.Lk</span>
-            </div>
-            <p className="text-sm">Smarter waste collection for a cleaner Sri Lanka.</p>
-          </div>
-          <div>
-            <h4 className="text-white font-semibold mb-3 text-sm">Product</h4>
-            <ul className="space-y-2 text-sm">
-              <li><a href="/dashboard" className="hover:text-white transition">Dashboard</a></li>
-              <li><a href="/report" className="hover:text-white transition">Report Issue</a></li>
-            </ul>
-          </div>
-          <div>
-            <h4 className="text-white font-semibold mb-3 text-sm">Company</h4>
-            <ul className="space-y-2 text-sm">
-              <li><a href="#about" className="hover:text-white transition">About</a></li>
-            </ul>
-          </div>
-          <div>
-            <h4 className="text-white font-semibold mb-3 text-sm">Legal</h4>
-            <p className="text-sm">Predictions are model estimates, refined with real council data over time.</p>
-          </div>
-        </div>
-        <div className="max-w-6xl mx-auto border-t border-gray-800 mt-10 pt-6 text-sm text-center">
-          © 2026 Kasala.lk — Built for a cleaner Sri Lanka 🇱🇰
-        </div>
-      </footer>
+      <Footer />
     </main>
   );
 }

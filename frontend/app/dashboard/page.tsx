@@ -1,5 +1,6 @@
 "use client";
-
+import Header from "../components/Header";
+import Footer from "../components/Footer";
 import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer } from "recharts";
 import dynamic from "next/dynamic";
 
@@ -72,6 +73,8 @@ export default function Dashboard() {
   };
 
   return (
+    <>
+    <Header />
     <main className="min-h-screen bg-gray-50 px-6 py-12">
       <div className="max-w-xl mx-auto bg-white p-8 rounded-xl shadow-sm border">
         <h1 className="text-2xl font-bold mb-6 text-green-700">
@@ -169,5 +172,7 @@ export default function Dashboard() {
         </div>
       </div>
     </main>
+     <Footer />
+  </>
   );
 }

@@ -1,5 +1,6 @@
 "use client";
-
+import Header from "../components/Header";
+import Footer from "../components/Footer";
 import { useState, useEffect } from "react";
 import { supabase } from "../../lib/supabase";
 
@@ -56,6 +57,9 @@ export default function ReportPage() {
   };
 
   return (
+
+    <>
+    <Header />
     <main className="min-h-screen bg-gray-50 px-6 py-12">
       <div className="max-w-xl mx-auto bg-white p-8 rounded-xl shadow-sm border">
         <h1 className="text-2xl font-bold mb-2 text-green-700">Report a Problem</h1>
@@ -130,5 +134,7 @@ export default function ReportPage() {
         </div>
       </div>
     </main>
+    <Footer />
+    </>
   );
 }
