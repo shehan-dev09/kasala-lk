@@ -9,7 +9,7 @@ export default function Header() {
     <>
       <header className="flex justify-between items-center px-6 md:px-10 py-4 bg-white/95 backdrop-blur-sm shadow-sm sticky top-0 z-50">
         <a href="/" className="flex items-center gap-2 md:gap-3">
-          <img src="public/logo.png" alt="Kasala.lk logo" className="w-9 h-9 rounded-lg" />
+          <img src="/public/logo.png" alt="Kasala.lk logo" className="w-9 h-9 rounded-lg" />
           <span className="text-xl font-bold text-brand-700" style={{ fontFamily: "var(--font-heading)" }}>
             Kasala.Lk
           </span>
