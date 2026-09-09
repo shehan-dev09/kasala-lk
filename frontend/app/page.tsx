@@ -199,7 +199,7 @@ export default function Home() {
       {/* City section (with transparency note merged in) */}
       <section className="relative py-16 md:py-24 px-6 text-white overflow-hidden">
         <div
-          className="absolute inset-0 bg-cover bg-fixed bg-center"
+          className="absolute inset-0 bg-cover bg-center md:bg-fixed"
           style={{ backgroundImage: "url('/city-bg.jpg')" }}
         ></div>
         {/* Darkened, layered overlay for readability + depth */}
