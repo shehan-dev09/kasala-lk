@@ -8,6 +8,8 @@
   --color-brand-400: #4ade80;
   --color-brand-300: #86efac;
   --color-brand-50: #f0fdf4;
+  --color-brand-100: #F0FFF2;
+  
 
   --font-heading: var(--font-poppins), sans-serif;
   --font-body: var(--font-inter), sans-serif;
