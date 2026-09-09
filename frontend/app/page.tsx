@@ -197,7 +197,7 @@ export default function Home() {
       </section>
 
       {/* City section (with transparency note merged in) */}
-      <section className="relative py-16 md:py-24 px-6 text-white overflow-hidden">
+      <section className="relative py-20 md:py-16 lg:py-24 px-6 text-white overflow-hidden min-h-[400px] flex items-center">
         <div
           className="absolute inset-0 bg-cover bg-center md:bg-fixed"
           style={{ backgroundImage: "url('/city-bg.jpg')" }}
@@ -205,13 +205,13 @@ export default function Home() {
         {/* Darkened, layered overlay for readability + depth */}
         <div className="absolute inset-0 bg-gradient-to-b from-brand-dark/85 via-brand-dark/75 to-brand-dark/90"></div>
 
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.6 }}
-          className="relative z-10 max-w-3xl mx-auto text-center"
-        >
+<motion.div
+  initial={{ opacity: 0, y: 20 }}
+  whileInView={{ opacity: 1, y: 0 }}
+  viewport={{ once: true }}
+  transition={{ duration: 0.6 }}
+  className="relative z-10 max-w-3xl mx-auto text-center px-2"
+>
           <h2 className="text-3xl font-bold mb-4" style={{ fontFamily: "var(--font-heading)" }}>
             Built for Sri Lanka's Cities
           </h2>
