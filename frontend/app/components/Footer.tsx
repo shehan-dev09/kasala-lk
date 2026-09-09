@@ -4,7 +4,7 @@ export default function Footer() {
       <div className="max-w-6xl mx-auto grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-10">
         <div>
           <div className="flex items-center gap-2 mb-3">
-            <img src="/logo.png" alt="Kasala.lk" className="w-8 h-8 rounded-lg" />
+            <img src="public/logo.png" alt="Kasala.lk" className="w-8 h-8 rounded-lg" />
             <span className="text-white font-bold">Kasala.Lk</span>
           </div>
           <p className="text-sm">Smarter waste collection for a cleaner Sri Lanka.</p>
