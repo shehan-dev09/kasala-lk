@@ -10,7 +10,7 @@ const ZoneMap = dynamic(() => import("../components/ZoneMap"), { ssr: false });
 import { useState, useEffect } from "react";
 
 const ZONES = ["Colombo", "Kandy", "Galle"];
-const API_URL = "http://127.0.0.1:8000";
+const API_URL = "kasala-lk-production.up.railway.app";
 
 
 export default function Dashboard() {
