@@ -11,7 +11,7 @@ import { translations } from "../translations";
 const ZoneMap = dynamic(() => import("../components/ZoneMap"), { ssr: false });
 
 const ZONES = ["Colombo", "Kandy", "Galle"];
-const API_URL = "https://kasala-lk-production.up.railway.app";
+const API_URL = "https://kasala-lk-ep4z-brown.vercel.app";
 
 export default function Dashboard() {
   const { lang } = useLanguage();
