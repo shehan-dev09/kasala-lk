@@ -1,6 +1,6 @@
 <div align="center">
 
-<img src="frontend/public/logo.png" alt="Kasala.lk logo" width="120" />
+<img src="frontend/public/Logo.png" alt="Kasala.lk logo" width="120" />
 
 # Kasala.lk (කසල.lk)
 
