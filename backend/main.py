@@ -4,6 +4,8 @@ from pydantic import BaseModel
 import joblib
 import pandas as pd
 from datetime import date
+from pathlib import Path
+BASE_DIR = Path(__file__).parent
 
 app = FastAPI(title="Kasala.lk Prediction API")
 
@@ -16,9 +18,9 @@ app.add_middleware(
 )
 
 # Load model + encoders once at startup
-model = joblib.load("model/model.pkl")
-zone_encoder = joblib.load("model/zone_encoder.pkl")
-season_encoder = joblib.load("model/season_encoder.pkl")
+model = joblib.load(BASE_DIR / "model" / "model.pkl")
+zone_encoder = joblib.load(BASE_DIR / "model" / "zone_encoder.pkl")
+season_encoder = joblib.load(BASE_DIR / "model" / "season_encoder.pkl")
 
 # Zone reference data (must match what you used in generate_data.py)
 ZONES = {
